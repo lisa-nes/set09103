@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Base template Header and Footer</title>
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+	
+	<link href="{{ url_for('static', filename='css/all.css') }}" rel="stylesheet" />
+
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+    <nav class="navbar fixed-top bg-white">
+
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+
+                <a href="#" class="d-block">
+
+                    <img src="static/img/logo.png" alt="logo" width="150" height="80">
+
+                </a>
+
+            </div>
+
+            <ul class="nav pt-3">
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-uppercase pb-0" href="#"><i class="fas fa-user d-block"></i>recipes</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-uppercase pb-0" href="/recipe/new"><i class="fas fa-edit d-block"></i>add recipe</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-uppercase pb-0" href="/want-to-try"><i class="fas fa-heart d-block"></i>want to try</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-uppercase pb-0" href="/have/tried"><i class="fas fa-utensils d-block"></i>have tried</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-uppercase pb-0" href="/account"><i class="fas fa-user d-block"></i>about</a>
+
+                </li>
+
+            </ul>
+
+            <div class="nav">
+
+                <button type="button" class="btn"><a class="text-uppercase" href="#">log in</a></button>
+
+            </div>
+
+        </div>
+
+
+
+    </nav>
+
+
+
+    <main class="main_overview">
+
+        <div class="mt-5">
+
+            <div class="row mb-3">
+
+                <div class="col-12 d-flex justify-content-center">
+                    <div>
+                        <h2 class="text-uppercase text-center">Get inspired...</h2>
+
+                        <h4 class="text-center">Explore hundreds of different cooking and baking recipes and get inspired <br />by other people's ideas.</h4>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-6 cooking-bg p-4 d-flex justify-content-center">
+
+                    <button type="button" class="btn"><a class="text-uppercase" href="/recipes/cooking">cooking</a></button>
+
+                </div>
+
+                <div class="col-6 baking-bg p-4 d-flex justify-content-center">
+
+                    <button type="button" class="btn"><a class="text-uppercase" href="/recipes/baking">baking</a></button>
+
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+    </main>
+
+
+
+
+
+    <footer>
+
+        <div class="container-fluid p-3">
+
+            <div class="row">
+
+                <div class="col-3 d-flex justify-content-center align-items-center">
+
+                    <p class="mb-0 text-white">
+
+                        Bake. Cook. Share your favourite recipes.
+
+                    </p>
+
+                </div>
+
+                <div class="col-6 d-flex justify-content-center align-items-center pt-2 pb-2">
+
+                    <img src="static/img/logo_footer.png" width="140" height="80">
+
+                </div>
+
+                <div class="col-3 d-flex justify-content-center align-items-center">
+
+                    <a class="text-white" href="#"><i class="fas fa-arrow-alt-circle-up d-block d-flex justify-content-center"></i>Back to top</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+
+
+</body>
+
+</html> 
