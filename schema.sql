@@ -1,7 +1,15 @@
 DROP TABLE if EXISTS albums;
 
+DROP TABLE if EXISTS recipe;
+
+DROP TABLE if EXISTS recipeDiet;
+
+DROP TABLE if EXISTS diet;
+
+DROP TABLE if EXISTS recipeComment;
+
 CREATE TABLE recipe (
-        recipeId integer PRIMARY KEY,
+        recipeId INTEGER PRIMARY KEY AUTOINCREMENT,
         title text,
         description text,
         ingredients text,
@@ -14,25 +22,26 @@ CREATE TABLE recipe (
 );
 
 CREATE TABLE recipeComment (
-        commentId integer PRIMARY KEY,
+        commentId INTEGER PRIMARY KEY AUTOINCREMENT,
         comment text,
+	recipeId integer,
         name text,
-        commentdate date,
+        commentdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (recipeId)
                 REFERENCES recipe (recipeId)
 );
 
 CREATE TABLE diet (
-        dietId integer PRIMARY KEY,
+        dietId INTEGER PRIMARY KEY AUTOINCREMENT,
         dietName text
 );
 
 CREATE TABLE recipeDiet (
-	recipeId integer,
-	dietId integer,
-	PRIMARY KEY (recipeId,dietId),
-	FOREIGN KEY (recipeId)
-		REFERENCES recipe (recipeId),
-	FOREIGN KEY (dietId)
-		REFERENCES diet (dietId)
+        recipeId integer,
+        dietId integer,
+        PRIMARY KEY (recipeId,dietId),
+        FOREIGN KEY (recipeId)
+                REFERENCES recipe (recipeId),
+        FOREIGN KEY (dietId)
+                REFERENCES diet (dietId)
 );

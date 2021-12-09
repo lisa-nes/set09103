@@ -1,0 +1,57 @@
+
+{% extends "base_template.html" %}
+
+{% block content %}
+
+    <main class="main_overview">
+        <div class="container-fluid d-flex justify-content-center">
+			<div class="row">
+
+                <div class="col-12 mb-3">
+
+                    <h2 class="text-uppercase">Cooking</h2>
+
+                    <hr class="heading-line">
+
+                </div>
+
+            </div>
+		</div>
+		
+        <div class="container-fluid d-flex justify-content-center">
+			
+            <div class="row">
+                <div class="col-2">
+                    <button type="button" class="btn btn-diet"><a href="#">vegan</a></button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-diet"><a href="#">vegetarian</a></button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-diet"><a href="#">gluten-free</a></button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-diet"><a href="#">sweet</a></button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-diet"><a href="#">savoury</a></button>
+                </div>
+            </div>
+
+        </div>
+        <div class="container-fluid mt-5 mb-5 recipe-overview">
+
+				{% for recipe in recipes %}
+				
+				{% block recipe %}
+				
+				{% endblock %}
+				
+				{% endfor %}
+
+        </div>
+        
+    </main>
+
+
+{% endblock %}

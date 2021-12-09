@@ -1,0 +1,84 @@
+{% extends "single_recipe.html" %}
+
+{% block comment %}
+				
+				
+
+<div class="row">
+
+                <div class="col-3">
+
+                </div>
+
+                <div class="col-6">
+
+                    <div class="comment-section">
+
+                        <h4>Comments</h4>
+
+                        <!--<hr class="heading-line-small">-->
+
+                        {% block singleComment %}
+				
+						{% endblock %}
+
+                        <div class="row comment-box-add p-2">
+
+                            <div class="col-1">
+
+                                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Alternate Text" class="rounded circleImage" width="50" height="50"/>
+
+                            </div>
+
+                            <div class="col-11">
+
+                                <form>
+
+                                    <div class="form-row">
+
+                                        <div class="col-auto">
+
+                                            <label class="sr-only" for="inlineFormInput">Username</label>
+
+                                            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Username..." name="username">
+
+                                        </div>
+
+										<div class="col-auto">
+
+                                            <label class="sr-only" for="inlineFormInput">Comment</label>
+
+                                            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Comment..." name="commenttext">
+
+                                        </div>
+
+                                        <div class="col-auto">
+
+                                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+                                        </div>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-3">
+
+                </div>
+
+            </div>
+			
+
+{% endblock %}

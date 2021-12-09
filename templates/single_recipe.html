@@ -1,0 +1,149 @@
+ 
+{% extends "base_template.html" %}
+
+{% block content %}
+ <main class="main_overview">
+
+        <div class="container-fluid d-flex justify-content-center mt-5">
+
+            <div class="row">
+
+                <div class="col-12">
+
+                    <h2 class="text-uppercase">{{ recipe['title'] }}</h2>
+
+                    <hr class="heading-line">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container-fluid mt-5 mb-5 recipe-overview">
+
+            <div class="row">
+
+                <div class="col-3">
+
+                </div>
+
+                <div class="col-6">
+
+
+
+                    <div class="image-singleRecipe">
+
+                        <div class="row">
+
+                            <div class="col-12">
+
+                                <div class="diet-icons">
+
+                                    <div class="row">
+										<img class="image-in-single-recipe" src="{{ url_for('static', filename='img/logo.png') }}" alt="vegan recipe">
+                                        <div class="col-6"></div>
+
+                                        <div class="col-6 d-flex pb-3 icon-div-single-recipe justify-content-end">
+
+                                            <div class="place-icon-singleRecipe p-3">
+
+                                                <a href="#" class="mr-3"><i class="far fa-heart"></i></a>
+
+                                                <a href="#"><i class="fas fa-utensils"></i></a>
+
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-3">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container-fluid mt-5 mb-5">
+
+            <div class="row">
+
+                <div class="col-3">
+
+                </div>
+
+                <div class="col-6">
+
+                    <div class="recipe-description p-3">
+
+                        <div class="description recipe-sections">
+
+                            <h5>Description</h5>
+
+                            <p>{{ recipe['description'] }}</p>
+
+                        </div>
+
+                        <div class="ingredients recipe-sections">
+
+                            <h5>Ingredients</h5>
+
+                            <p>{{ recipe['ingredients'] }}</p>
+
+                        </div>
+
+                        <div class="instructions recipe-sections">
+
+                            <h5>Instructions</h5>
+
+							<p>{{ recipe['instructions'] }}</p>
+                            
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-3">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="container-fluid mt-5 mb-5">
+
+            {% block comment %}
+				
+			{% endblock %}
+
+        </div>
+
+    </main>
+
+
+{% endblock %}
+
+

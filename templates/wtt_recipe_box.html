@@ -1,0 +1,18 @@
+{% extends "wtt_recipe_box.html" %}
+
+{% block wttRecipeBox %}
+								
+
+<div class="col-auto pr-2 pl-2 mb-5">
+                    <a href="#" class="box-link">
+					<div class="image-wtt-box">
+					<img class="image-in-wantToTry" src="{{ url_for('static', filename='img/logo.png') }}" alt="vegan recipe">
+                    </div>
+                    <div class="tile-title pt-3 pb-3 pl-2 pr-2">
+                        <h6 class="text-white text-center">{{ recipeTitle }}</h6>
+                    </div>
+					</a>
+                </div>
+
+{% endblock %}
+

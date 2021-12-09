@@ -1,0 +1,30 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+    <main class="main_overview">
+        <div class="container-fluid d-flex justify-content-center mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-uppercase">{{ typeName }}</h2>
+                    <hr class="heading-line">
+                </div>
+            </div>
+
+        </div>
+        <div class="container-fluid mt-5 mb-5 recipe-tiles d-flex justify-content-center">
+            <div class="row d-flex flex-wrap">
+                
+				{% block wttRecipeBox %}
+				
+				{% endblock %}
+				
+				     
+
+            </div>
+        </div>
+
+    </main>
+
+{% endblock %}
+

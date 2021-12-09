@@ -1,0 +1,30 @@
+{% extends "comments.html" %}
+
+{% block singleComment %}
+
+<div class="row comment-box p-2">
+
+                            <div class="col-1">
+
+                                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Alternate Text" class="rounded circleImage" width="50" height="50"/>
+                                
+
+                            </div>
+
+                            <div class="col-9">
+
+                                <p class="comment-username mb-1">{{ username }}</p>
+
+                                <p class="comment-text font-weight-bold mb-0">{{ commentText }}</p>
+
+                            </div>
+
+                            <div class="col-2">
+
+                                <p class="comment-date">{{ date }}</p>
+
+                            </div>
+
+                        </div>
+						
+{% endblock %}

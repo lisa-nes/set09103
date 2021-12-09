@@ -1,0 +1,168 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+    <main class="main_overview">
+
+        <div class="container-fluid d-flex justify-content-center mt-5">
+
+            <div class="row">
+
+                <div class="col-12">
+
+                    <h2 class="text-uppercase">Add a baking recipe</h2>
+
+                    <hr class="heading-line">
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="container-fluid mt-5 mb-5 justify-content-center form-content">
+
+
+            <form>
+
+                <div class="form-group row">
+
+                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+
+                    <div class="col-sm-10">
+
+                        <input type="text" class="form-control" id="title" placeholder="Title">
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                    <label for="imageUpload" class="col-sm-2 col-form-label">Upload image</label>
+
+                    <div class="col-sm-10">
+
+                        <input type="file" class="form-control-file" id="imageUpload">
+
+                    </div>
+
+                </div>
+
+
+
+                <fieldset class="form-group">
+
+                    <div class="row">
+
+                        <legend class="col-form-label col-sm-2 pt-0">Categories</legend>
+
+                        <div class="col-sm-10">
+
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="checkbox" id="gridCheck2">
+
+                                <label class="form-check-label" for="gridCheck2">
+
+                                    sweet
+
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="checkbox" id="gridCheck3">
+
+                                <label class="form-check-label" for="gridCheck3">
+
+                                    savoury
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="checkbox" id="gridCheck6">
+
+                                <label class="form-check-label" for="gridCheck6">
+
+                                    gluten-free
+
+                                </label>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+
+
+                <div class="form-group row">
+
+                    <label for="Textarea1" class="col-sm-2 col-form-label">Description</label>
+
+                    <div class="col-sm-10">
+
+                        <textarea class="form-control" id="Textarea1" rows="3"></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                    <label for="Textarea1" class="col-sm-2 col-form-label">Ingredients</label>
+
+                    <div class="col-sm-10">
+
+                        <textarea class="form-control" id="Textarea1" rows="3"></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                    <label for="Textarea1" class="col-sm-2 col-form-label">Instructions</label>
+
+                    <div class="col-sm-10">
+
+                        <textarea class="form-control" id="Textarea1" rows="3"></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                    <div class="col-sm-12 d-flex justify-content-end">
+
+                        <button type="submit" class="btn btn-primary">add recipe</button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+
+
+        </div>
+
+
+
+    </main>
+	
+	
+{% endblock %}
