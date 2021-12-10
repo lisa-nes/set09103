@@ -36,13 +36,16 @@ footer {
     font-size: large;
     
 }
+.back-to-top a:hover{
+	text-decoration: none;
+}
 
 
 
 /*404*/
 
 .bg-main-notfound {
-    background-image: url("images/background.png");
+    background-image: url("/static/img/background.png") !important;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -55,7 +58,7 @@ footer {
 /*addRecipe1*/
 
 .bg-main-recipe1 {
-    background-image: url("images/addrecipe1.jpg");
+    background-image: url("/static/img/addrecipe1.jpg") !important;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -74,13 +77,6 @@ footer {
 
 
 /*addRecipe2*/
-
-
-.recipe-img {
-    background-image: url("images/pasta.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
 
 h2 {
     color: #8F8375;
@@ -176,7 +172,7 @@ h2 {
 }
 
 .heading-line {
-    width: 10em;
+    width: 16em;
     background-color: #8F8375;
     height: 0.2em;
 }
@@ -237,11 +233,11 @@ h2 {
 }
 
 .btn-diet a:hover, .btn-category a:hover{
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
-.box-link a:hover{
-    text-decoration: none;
+.box-link:hover{
+    text-decoration: none !important;
 }
 
 .recipe-box:hover{
@@ -249,10 +245,13 @@ h2 {
 }
 
 
+
+
+
 /*start*/
 
 .recipe-img {
-    background-image: url("static/img/pasta.jpg");
+    background-image: url("static/img/pasta.jpg") !important;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -298,28 +297,22 @@ h2 {
 
 
 .recipe-sections {
+
     color: #8F8375;
 }
-
-
 
 .comment-box {
     background-color: #e9f0f4;
 }
 
-
-
-.circle-image {
-    width: 50px;
-    height: 50px;
-    background-image: url('images/user.jpg');
-    background-size: cover;
-    display: block;
-    border-radius: 50%;
+.start-btn{
+	color: #99BACE !important;
+	background-color: #095185 !important;
 }
 
+
 .cooking-bg {
-    background-image: url('static/img/cookingbg.jpg');
+    background-image: url("static/img/cookingbg.jpg") !important;
     background-size: cover;
     height: 30em;
     display: flex;
@@ -334,7 +327,7 @@ h2 {
     }
 
 .baking-bg {
-    background-image: url('static/img/bakingbg.jpg');
+    background-image: url("static/img/bakingbg.jpg") !important;
     background-size: cover;
     display: flex;
     align-items: center;

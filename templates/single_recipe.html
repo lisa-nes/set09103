@@ -41,15 +41,22 @@
                                 <div class="diet-icons">
 
                                     <div class="row">
-										<img class="image-in-single-recipe" src="{{ url_for('static', filename='img/logo.png') }}" alt="vegan recipe">
+										<img class="image-in-single-recipe" src="{{ url_for('static', filename='img/' + recipe['image']) }}" alt="vegan recipe">
                                         <div class="col-6"></div>
 
                                         <div class="col-6 d-flex pb-3 icon-div-single-recipe justify-content-end">
 
                                             <div class="place-icon-singleRecipe p-3">
-
-                                                <a href="#" class="mr-3"><i class="far fa-heart"></i></a>
-
+											
+												{% if wanttotry == None %}
+                                                <a href="/recipes/{{ recipeCategory }}/{{ recipeId }}/{{ recipeName }}?wantToTry=true" class="mr-3"><i class="far fa-heart"></i></a>
+												{% endif %}
+												{% if wanttotry == 0 %}
+                                                <a href="/recipes/{{ recipeCategory }}/{{ recipeId }}/{{ recipeName }}?wantToTry=true" class="mr-3"><i class="far fa-heart"></i></a>
+												{% endif %}
+												{% if wanttotry == 1 %}
+												<a href="/recipes/{{ recipeCategory }}/{{ recipeId }}/{{ recipeName }}?wantToTry=false" class="mr-3"><i class="fas fa-heart"></i></a>
+												{% endif %}
                                                 <a href="#"><i class="fas fa-utensils"></i></a>
 
 

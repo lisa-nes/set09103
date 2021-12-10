@@ -16,23 +16,45 @@
 
                         <h4>Comments</h4>
 
-                        <!--<hr class="heading-line-small">-->
+						{% for comment in comments %}
+						<div class="row comment-box p-2">
 
-                        {% block singleComment %}
+                            <div class="col-1">
+
+                                <img src="{{ url_for('static', filename='img/user.jpg') }}" alt="Alternate Text" class="rounded circleImage" width="50" height="50"/>
+                                
+
+                            </div>
+
+                            <div class="col-9">
+
+                                <p class="comment-username mb-1">{{ comment['name'] }}</p>
+
+                                <p class="comment-text font-weight-bold mb-0">{{ comment['comment'] }}</p>
+
+                            </div>
+
+                            <div class="col-2">
+
+                                <p class="comment-date">{{ comment['commentdate'] }}</p>
+
+                            </div>
+
+                        </div>
+						{% endfor %}
 				
-						{% endblock %}
 
                         <div class="row comment-box-add p-2">
 
                             <div class="col-1">
 
-                                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Alternate Text" class="rounded circleImage" width="50" height="50"/>
+                                <img src="{{ url_for('static', filename='img/user.jpg') }}" alt="Alternate Text" class="rounded circleImage" width="50" height="50"/>
 
                             </div>
 
                             <div class="col-11">
 
-                                <form>
+                                <form method="post">
 
                                     <div class="form-row">
 

@@ -9,24 +9,41 @@
                 <div class="col-6">
 				
 					
-<a href="#" class="box-link">
+<a href="/recipes/cooking/{{recipeId}}/{{recipeName}}" class="box-link">
                         <div class="recipe-box">
                             <div class="row">
                                 <div class="col-3 my-auto text-center">
                                     <p class="text-uppercase text-white">
-                                        Pasta with basil and tomato sauce
+                                        {{ recipes['title'] }}
                                     </p>
                                 </div>
                                 <div class="col-9">
                                     <div class="diet-icons">
                                         <div class="row">
-											<img class="image-in-box" src="images/pasta.jpg" alt="vegan recipe">
+											<img class="image-in-box" src="{{ url_for('static', filename='img/' + recipes['image']) }}" alt="vegan recipe">
                                             <div class="col-6"></div>
                                             <div class="col-6 d-flex pb-3 icon-div justify-content-end">
                                                 <div class="place-icon">
-                                                    <img class="mr-1" src="images/vegan.png" alt="vegan recipe" width="50" height="50">
-                                                    <img class="mr-1" src="images/veggie.png" alt="veggie recipe" width="50" height="50">
-                                                    <img src="images/glutenfree.png" alt="glutenfree recipe" width="50" height="50">
+												
+												{% for diet in diets %}
+
+													{% if diet == 1 %}	
+														<img class="mr-1" src="{{ url_for('static', filename='img/swee.png') }}" alt="sweet recipe" width="50" height="50">
+													{% endif %}
+													{% if diet == 2 %}	
+														<img class="mr-1" src="{{ url_for('static', filename='img/savoury.png') }}" alt="savoury recipe" width="50" height="50">
+													{% endif %}
+													{% if diet == 3 %}	
+														<img class="mr-1" src="{{ url_for('static', filename='img/veggie.png') }}" alt="veggie recipe" width="50" height="50">
+													{% endif %}
+													{% if diet == 4 %}	
+														<img class="mr-1" src="{{ url_for('static', filename='img/vegan.png') }}" alt="vegan recipe" width="50" height="50">
+													{% endif %}
+													{% if diet == 5 %}	
+														<img class="mr-1" src="{{ url_for('static', filename='img/glutenfree.png') }}" alt="glutenfree recipe" width="50" height="50">
+													{% endif %}
+												{% endfor %}
+												
                                                 </div>
                                             </div>
                                         </div>

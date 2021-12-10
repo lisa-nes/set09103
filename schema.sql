@@ -16,8 +16,13 @@ CREATE TABLE recipe (
         instructions text,
         image blob,
         wantToTry boolean,
-        haveTried boolean
-
+        haveTried boolean,
+	sweet boolean,
+	savoury boolean,
+	vegetarian boolean,
+	vegan boolean,
+	glutenfree boolean,
+	recipetype text
 
 );
 

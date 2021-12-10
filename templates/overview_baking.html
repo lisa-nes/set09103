@@ -9,7 +9,7 @@
 
                 <div class="col-12 mb-3">
 
-                    <h2 class="text-uppercase">Cooking</h2>
+                    <h2 class="text-uppercase">Baking</h2>
 
                     <hr class="heading-line">
 
@@ -21,21 +21,16 @@
         <div class="container-fluid d-flex justify-content-center">
 			
             <div class="row">
-                <div class="col-2">
-                    <button type="button" class="btn btn-diet"><a href="#">vegan</a></button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-diet"><a href="#">vegetarian</a></button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-diet"><a href="#">gluten-free</a></button>
-                </div>
-                <div class="col-2">
+				<div class="col-3">
                     <button type="button" class="btn btn-diet"><a href="#">sweet</a></button>
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                     <button type="button" class="btn btn-diet"><a href="#">savoury</a></button>
                 </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-diet"><a href="#">gluten-free</a></button>
+                </div>
+                
             </div>
 
         </div>
@@ -43,9 +38,53 @@
 
 				{% for recipe in recipes %}
 				
-				{% block recipe %}
+				<div class="row mb-5">
+                <div class="col-3">
+                </div>
+                <div class="col-6">
 				
-				{% endblock %}
+					
+<a href="/recipes/baking/{{recipe['recipeId']}}/{{recipe['title']}}" class="box-link">
+                        <div class="recipe-box">
+                            <div class="row">
+                                <div class="col-3 my-auto text-center">
+                                    <p class="text-uppercase text-white">
+                                        {{ recipe['title'] }}
+                                    </p>
+                                </div>
+                                <div class="col-9">
+                                    <div class="diet-icons">
+                                        <div class="row">
+											<img class="image-in-box" src="{{ url_for('static', filename='img/' + recipe['image']) }}" alt="recipe">
+                                            <div class="col-6"></div>
+                                            <div class="col-6 d-flex pb-3 icon-div justify-content-end">
+                                                <div class="place-icon">
+												
+													{% if recipe['sweet'] == 1 %}	
+														<img class="mr-1" src="{{ url_for('static', filename='img/swee.png') }}" alt="sweet recipe" width="50" height="50">
+													{% endif %}
+													{% if recipe['savoury'] == 1 %}	
+														<img class="mr-1" src="{{ url_for('static', filename='img/savoury.png') }}" alt="savoury recipe" width="50" height="50">
+													{% endif %}
+													{% if recipe['glutenfree'] == 1 %}	
+														<img class="mr-1" src="{{ url_for('static', filename='img/glutenfree.png') }}" alt="glutenfree recipe" width="50" height="50">
+													{% endif %}
+												
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>	
+					
+					
+ </div>
+                <div class="col-3">
+                </div>
+            </div>
 				
 				{% endfor %}
 

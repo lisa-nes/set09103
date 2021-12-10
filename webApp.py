@@ -9,7 +9,7 @@ app.config['UPLOAD_FOLDER']="static/img"
 
 
 
-db_location = 'var/sqlite.db'
+db_location = 'var/recipes2.db'
 
 
 def get_db():
@@ -32,6 +32,10 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404_page.html')
 
 @app.route('/')
 def index():
@@ -56,6 +60,8 @@ def addRecipe2():
         description = request.form['description']
         ingredients = request.form['ingredients']
         instructions = request.form['instructions']
+        recipetype = request.form['type']
+
 
         recipeImage=request.files['imageRecipe']
 
@@ -66,56 +72,121 @@ def addRecipe2():
         #with open(imageRecipe, 'rb') as file:
          #   blobData = file.read()
         
+        # recipeId = db.cursor().execute ('SELECT last_insert_rowid()')
+        if category1 == "on":
+            sweet = 1
+        else:
+            sweet = 0
+
+        if category2 == "on":
+            savoury = 1
+        else:
+            savoury = 0
+
+        if category3 == "on":
+            vegetarian = 1
+        else: 
+            vegetarian = 0
+
+        if category4 == "on":
+            vegan = 1
+        else:
+            vegan = 0
+
+        if category5 == "on":
+            glutenfree = 1
+        else:
+            glutenfree = 0
+
         db = get_db()
         cursor = db.cursor()
 
-        cursor.execute('INSERT INTO recipe (title, description, ingredients, instructions, image) VALUES (?,?,?,?,?)', (titleRecipe, description, ingredients, instructions, recipeImage.filename,))
+        cursor.execute('INSERT INTO recipe (title, description, ingredients, instructions, image, sweet, savoury, vegetarian, vegan, glutenfree, recipetype) VALUES (?,?,?,?,?,?,?,?,?,?,?)', (titleRecipe, description, ingredients, instructions, recipeImage.filename, sweet, savoury, vegetarian, vegan, glutenfree, recipetype))
         db.commit()
 
         recipeId = cursor.lastrowid
 
 
-      # recipeId = db.cursor().execute ('SELECT last_insert_rowid()')
-        if category1 == "on": 
-            cursor.execute('INSERT INTO recipeDiet (recipeId, dietId) VALUES (?,?)', (recipeId, '1'))
-            db.commit()
+        cursor.execute('SELECT title from recipe WHERE recipeId=?', (recipeId,))
 
-        if category2 == "on":
-            cursor.execute('INSERT INTO recipeDiet (recipeId, dietId) VALUES (?,?)', (recipeId, '2'))
-            db.commit()
-
-
-        if category3 == "on":
-            cursor.execute('INSERT INTO recipeDiet (recipeId, dietId) VALUES (?,?)', (recipeId, '3'))
-            db.commit()
-
-        
-        if category4 == "on":
-            cursor.execute('INSERT INTO recipeDiet (recipeId, dietId) VALUES (?,?)', (recipeId, '4'))
-            db.commit()
-
-
-        if category5 == "on":
-            cursor.execute('INSERT INTO recipeDiet (recipeId, dietId) VALUES (?,?)', (recipeId, '5'))
-            db.commit()
-
-
-        db.commit()
-       # db.close()
-        return redirect(url_for('showRecipe', recipeCategory='cooking', recipeId=recipeId, recipeName=titleRecipe))
-
-        
+        # db.close()
+        return redirect(url_for('showRecipe', recipeCategory='cooking', recipeId=recipeId, recipeName=titleRecipe))        
 
     return render_template('add_recipe2.html')
 
-@app.route('/recipe/new/baking')
+@app.route('/recipe/new/baking',  methods=('GET', 'POST'))
 def addRecipe3():
+
+    if request.method == 'POST':
+        titleRecipe = request.form['titleRecipe']
+       # imageRecipe = request.form['imageRecipe']
+        category1 = request.form.get('category1')
+        category2 = request.form.get('category2')
+        category5 = request.form.get('category5')
+
+        description = request.form['description']
+        ingredients = request.form['ingredients']
+        instructions = request.form['instructions']
+        recipetype = request.form['type']
+
+        recipeImage=request.files['imageRecipe']
+
+        if recipeImage.filename!='':
+            filepath=os.path.join(app.config['UPLOAD_FOLDER'], recipeImage.filename)
+            recipeImage.save(filepath)
+
+        #with open(imageRecipe, 'rb') as file:
+         #   blobData = file.read()
+
+        # recipeId = db.cursor().execute ('SELECT last_insert_rowid()')
+        if category1 == "on":
+            sweet = 1
+        else:
+            sweet = 0
+
+        if category2 == "on":
+            savoury = 1
+        else:
+            savoury = 0
+
+        if category5 == "on":
+            glutenfree = 1
+        else:
+            glutenfree = 0
+
+        db = get_db()
+        cursor = db.cursor()
+
+        cursor.execute('INSERT INTO recipe (title, description, ingredients, instructions, image, sweet, savoury, glutenfree, recipetype) VALUES (?,?,?,?,?,?,?,?,?)', (titleRecipe, description, ingredients, instructions, recipeImage.filename, sweet, savoury, glutenfree, recipetype))
+        db.commit()
+
+        recipeId = cursor.lastrowid
+
+        # db.close()
+        return redirect(url_for('showRecipe', recipeCategory='baking', recipeId=recipeId, recipeName=titleRecipe))
+
     return render_template('add_recipe3.html')
 
 
 @app.route('/recipes/cooking')
 def showCookingRecipes():
-    return render_template('recipe_boxes_overview.html')
+
+    db = get_db()
+    db.row_factory = sqlite3.Row
+
+    cursor = db.cursor()
+   # sql = 'SELECT * FROM recipe WHERE recipeId=?'
+   # recipe = cursor.execute(sql, [recipeId]).fetchall()
+
+    recipetype = 'cooking'
+
+    recipes = cursor.execute('SELECT * FROM recipe WHERE recipetype=?', (recipetype,)).fetchall()
+
+    # Query for inner join (recipe and diet)
+   # join = cursor.execute('SELECT rd.recipeId, d.dietId FROM recipeDiet rd INNER JOIN diet d on d.dietId = rd.dietId').fetchall()
+
+    return render_template('overview_cooking.html', recipes=recipes) #join=join
+
 
 @app.route('/recipes/cooking/sweet')
 def showCookingRecipesSweet():
@@ -137,7 +208,23 @@ def showCookingRecipesVegetarian():
 
 @app.route('/recipes/baking')
 def showBakingRecipes():
-    return render_template('recipe_boxes_overview.html')
+
+    db = get_db()
+    db.row_factory = sqlite3.Row
+
+    cursor = db.cursor()
+   # sql = 'SELECT * FROM recipe WHERE recipeId=?'
+   # recipe = cursor.execute(sql, [recipeId]).fetchall()
+
+    recipetype = 'baking'
+
+    recipes = cursor.execute('SELECT * FROM recipe WHERE recipetype=?', (recipetype,)).fetchall()
+
+
+    # Query for inner join (recipe and diet)
+   # join = cursor.execute('SELECT rd.recipeId, d.dietId FROM recipeDiet rd INNER JOIN diet d on d.dietId = rd.dietId').fetchall()
+
+    return render_template('overview_baking.html', recipes=recipes)
 
 @app.route('/recipes/baking/savoury')
 def showBakingRecipesSavoury():
@@ -154,24 +241,41 @@ def showBakingRecipesGlutenfree():
 @app.route('/recipes/<recipeCategory>/<recipeId>/<recipeName>', methods=['POST','GET'])
 def showRecipe(recipeCategory,recipeId,recipeName):
 
-    db = get_db()
-    db.row_factory = sqlite3.Row
+    wantToTry = request.args.get('wantToTry', '')
 
-    cursor = db.cursor()
+    if wantToTry == '':
+        db = get_db()
+        db.row_factory = sqlite3.Row
+        cursor = db.cursor()
    # sql = 'SELECT * FROM recipe WHERE recipeId=?'
    # recipe = cursor.execute(sql, [recipeId]).fetchall()
-    
-    recipe = cursor.execute('SELECT * FROM recipe WHERE recipeId=?', (recipeId,)).fetchone()
+        recipe = cursor.execute('SELECT * FROM recipe WHERE recipeId=?', (recipeId,)).fetchone()
+        wanttotry = cursor.execute('SELECT wantToTry FROM recipe WHERE recipeId=?', (recipeId,)).fetchone()
 
-    if request.method == 'POST':
-        name = request.form['username']
-        comment = request.form['commenttext']
+    else:
+        db = get_db()
+        db.row_factory = sqlite3.Row
+        cursor = db.cursor()
 
-        "conn = get_db_connection()" 
-        cursor.execute('INSERT INTO comment (comment,name) VALUES (?,?)',(comment, name)) 
-        db.commit()
-        db.close()
-    return render_template('single_comment.html', recipe=recipe)
+        if wantToTry == "true":
+            cursor.execute('UPDATE recipe SET wantToTry=1 WHERE recipeId=?', (recipeId,))
+
+        if wantToTry == "false":
+            cursor.execute('UPDATE recipe SET wantToTry=0 WHERE recipeId=?', (recipeId,))
+        return redirect(url_for('showRecipe', recipeCategory=recipeCategory, recipeId=recipeId, recipeName=recipeName))
+
+   # if request.method == 'POST':
+    #    name = request.form['username']
+     #   comment = request.form['commenttext']
+
+       # "conn = get_db_connection()" 
+       # cursor.execute('INSERT INTO recipeComment (comment,name,recipeId) VALUES (?,?,?)',(comment, name, recipeId)) 
+       # db.commit()
+
+   # comments = cursor.execute('SELECT * FROM recipeComment WHERE recipeId=?', (recipeId,)).fetchall()
+
+        
+    return render_template('comments.html', wanttotry=wanttotry, recipe=recipe, recipeCategory=recipeCategory, recipeId=recipeId, recipeName=recipeName) #comments=comments
 
 
 @app.route('/have-tried')

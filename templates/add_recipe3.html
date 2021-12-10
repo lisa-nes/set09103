@@ -1,6 +1,8 @@
+
 {% extends "base_template.html" %}
 
 {% block content %}
+
 
     <main class="main_overview">
 
@@ -25,7 +27,7 @@
         <div class="container-fluid mt-5 mb-5 justify-content-center form-content">
 
 
-            <form>
+            <form method="post" onsubmit="dataCheck(this)" enctype="multipart/form-data">
 
                 <div class="form-group row">
 
@@ -33,7 +35,8 @@
 
                     <div class="col-sm-10">
 
-                        <input type="text" class="form-control" id="title" placeholder="Title">
+                        <input type="text" class="form-control" id="title" placeholder="Title" name="titleRecipe" required>
+						<input type="hidden" id="type" name="type" value="baking">
 
                     </div>
 
@@ -45,7 +48,7 @@
 
                     <div class="col-sm-10">
 
-                        <input type="file" class="form-control-file" id="imageUpload">
+                        <input type="file" class="form-control-file" id="imageUpload" name="imageRecipe" required>
 
                     </div>
 
@@ -57,15 +60,15 @@
 
                     <div class="row">
 
-                        <legend class="col-form-label col-sm-2 pt-0">Categories</legend>
+                        <legend class="col-form-label col-sm-2 pt-0" id="category-form">Categories</legend>
 
                         <div class="col-sm-10">
 
                             <div class="form-check">
 
-                                <input class="form-check-input" type="checkbox" id="gridCheck2">
+                                <input class="form-check-input" type="checkbox" id="gridCheck1" name="category1">
 
-                                <label class="form-check-label" for="gridCheck2">
+                                <label class="form-check-label" for="gridCheck1">
 
                                     sweet
 
@@ -75,9 +78,9 @@
 
                             <div class="form-check">
 
-                                <input class="form-check-input" type="checkbox" id="gridCheck3">
+                                <input class="form-check-input" type="checkbox" id="gridCheck2" name="category2">
 
-                                <label class="form-check-label" for="gridCheck3">
+                                <label class="form-check-label" for="gridCheck2">
 
                                     savoury
 
@@ -85,12 +88,13 @@
 
                             </div>
 
+                           
 
                             <div class="form-check">
 
-                                <input class="form-check-input" type="checkbox" id="gridCheck6">
+                                <input class="form-check-input" type="checkbox" id="gridCheck5" name="category5">
 
-                                <label class="form-check-label" for="gridCheck6">
+                                <label class="form-check-label" for="gridCheck5">
 
                                     gluten-free
 
@@ -114,7 +118,7 @@
 
                     <div class="col-sm-10">
 
-                        <textarea class="form-control" id="Textarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="Textarea1" rows="3" name="description" required></textarea>
 
                     </div>
 
@@ -126,7 +130,7 @@
 
                     <div class="col-sm-10">
 
-                        <textarea class="form-control" id="Textarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="Textarea1" rows="3" name="ingredients" required></textarea>
 
                     </div>
 
@@ -138,7 +142,7 @@
 
                     <div class="col-sm-10">
 
-                        <textarea class="form-control" id="Textarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="Textarea1" rows="3" name="instructions" required></textarea>
 
                     </div>
 
